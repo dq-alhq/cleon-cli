@@ -1,136 +1,20 @@
-const namespaces = [
-    'buttons',
-    'charts',
-    'collections',
-    'colors',
-    'date-and-time',
-    'drag-and-drop',
-    'forms',
-    'media',
-    'navigation',
-    'overlays',
-    'pickers',
-    'statuses',
-    'surfaces',
-]
-
-const components: any[] = [
-    // ------------------------------------------------------------------------------------- //
-    //  ✓ Primitives
-    // ------------------------------------------------------------------------------------- //
-    { name: 'heading' },
-    { name: 'primitive' },
-    { name: 'dropdown' },
-    { name: 'dialog', children: [{ name: 'button' }, { name: 'heading' }] },
-    { name: 'field' },
-    { name: 'keyboard' },
-
-    // ------------------------------------------------------------------------------------- //
-    //  ✓ Utitlities
-    // ------------------------------------------------------------------------------------- //
-    { name: 'visually-hidden' },
-
-    // ------------------------------------------------------------------------------------- //
-    //  ✓ Only Namespaces and Children
-    // ------------------------------------------------------------------------------------- //
-    {
-        name: 'forms',
-        children: [
-            { name: 'form' },
-            { name: 'text-field' },
-            { name: 'radio-group' },
-            { name: 'textarea' },
-            { name: 'search-field' },
-            { name: 'slider' },
-            { name: 'switch' },
-            { name: 'number-field' },
-            { name: 'checkbox' },
-            { name: 'input-otp' },
-            { name: 'choicebox' },
-        ],
-    },
-    {
-        name: 'collections',
-        children: [
-            { name: 'menu' },
-            { name: 'list-box' },
-            { name: 'tabs' },
-            { name: 'tag-group' },
-            { name: 'table' },
-            { name: 'accordion' },
-            { name: 'grid-list' },
-        ],
-    },
-    {
-        name: 'date-and-time',
-        children: [
-            { name: 'calendar' },
-            { name: 'date-field' },
-            { name: 'date-picker' },
-            { name: 'time-field' },
-            { name: 'date-range-picker' },
-        ],
-    },
-    {
-        name: 'navigation',
-        children: [{ name: 'link' }, { name: 'breadcrumbs' }, { name: 'pagination' }],
-    },
-    {
-        name: 'overlays',
-        children: [
-            { name: 'modal' },
-            { name: 'sheet' },
-            { name: 'drawer' },
-            { name: 'popover' },
-            { name: 'tooltip' },
-            { name: 'command' },
-        ],
-    },
-    {
-        name: 'pickers',
-        children: [{ name: 'combo-box' }, { name: 'select' }, { name: 'multi-select' }],
-    },
-    {
-        name: 'statuses',
-        children: [
-            { name: 'badge' },
-            { name: 'progress-bar' },
-            { name: 'meter' },
-            { name: 'note' },
-            { name: 'toaster' },
-            { name: 'rating' },
-        ],
-    },
-    { name: 'surfaces', children: [{ name: 'card' }, { name: 'grid' }, { name: 'show-more' }] },
-    { name: 'media', children: [{ name: 'avatar' }, { name: 'carousel' }] },
-    {
-        name: 'colors',
-        children: [{ name: 'color-picker' }],
-    },
-    { name: 'buttons', children: [{ name: 'button' }, { name: 'file-trigger' }, { name: 'toggle' }] },
-    { name: 'drag-and-drop', children: [{ name: 'drop-zone' }] },
-    {
-        name: 'layouts',
-        children: [{ name: 'side-bar' }, { name: 'top-bar' }],
-    },
-
-    // ------------------------------------------------------------------------------------- //
-    // ✓ Children
-    // ------------------------------------------------------------------------------------- //
-
+export const components: any[] = [
     // ------------------------------------------------------------------------------------- //
     // ⌘ The children of Buttons
     // ------------------------------------------------------------------------------------- //
+    { name: 'separator', text: '  ┳━ BUTTONS' },
+
     { name: 'button' },
     { name: 'file-trigger', children: [{ name: 'button' }] },
-    { name: 'toggle' },
+    { name: 'toggle', children: [{ name: 'button' }] },
 
     // ------------------------------------------------------------------------------------- //
     // ⌘ The children of Collections
     // ------------------------------------------------------------------------------------- //
+    { name: 'separator', text: '  ╋━ COLLECTIONS' },
+
     { name: 'accordion' },
     { name: 'menu', children: [{ name: 'dropdown' }, { name: 'keyboard' }, { name: 'popover' }] },
-    { name: 'carousel', children: [{ name: 'button' }] },
     { name: 'list-box', children: [{ name: 'dropdown' }, { name: 'field' }] },
     { name: 'tabs' },
     { name: 'tag-group', children: [{ name: 'field' }, { name: 'badge' }] },
@@ -141,29 +25,23 @@ const components: any[] = [
     // ------------------------------------------------------------------------------------- //
     // ⌘ The children of Date and Time
     // ------------------------------------------------------------------------------------- //
+    { name: 'separator', text: '  ╋━ DATE & TIME' },
 
     { name: 'calendar', children: [{ name: 'button' }] },
-    { name: 'range-calendar', children: [{ name: 'calendar' }] },
     { name: 'date-field' },
     { name: 'date-range-picker', children: [{ name: 'date-picker' }] },
     {
         name: 'date-picker',
-        children: [
-            { name: 'popover' },
-            { name: 'field' },
-            { name: 'calendar' },
-            { name: 'date-field' },
-            { name: 'range-calendar' },
-        ],
+        children: [{ name: 'popover' }, { name: 'field' }, { name: 'calendar' }, { name: 'date-field' }],
     },
     { name: 'time-field', children: [{ name: 'field' }, { name: 'date-field' }] },
 
     // ------------------------------------------------------------------------------------- //
     // ⌘ The children of Forms
     // ------------------------------------------------------------------------------------- //
+    { name: 'separator', text: '  ╋━ FORMS' },
 
     { name: 'form' },
-    { name: 'tag-field', children: [{ name: 'tag-group' }, { name: 'field' }] },
     { name: 'text-field', children: [{ name: 'field' }] },
     { name: 'input-otp' },
     { name: 'radio', children: [{ name: 'field' }] },
@@ -171,10 +49,13 @@ const components: any[] = [
     { name: 'textarea', children: [{ name: 'field' }] },
     { name: 'number-field', children: [{ name: 'field' }] },
     { name: 'search-field', children: [{ name: 'field' }, { name: 'button' }] },
+    { name: 'drop-zone' },
 
     // ------------------------------------------------------------------------------------- //
     // ⌘ The children of Navigation
     // ------------------------------------------------------------------------------------- //
+    { name: 'separator', text: '  ╋━ NAVIGATION' },
+
     { name: 'link' },
     {
         name: 'pagination',
@@ -188,46 +69,48 @@ const components: any[] = [
     // ------------------------------------------------------------------------------------- //
     // ⌘ The children of Surfaces
     // ------------------------------------------------------------------------------------- //
+    { name: 'separator', text: '  ╋━ SURFACES' },
+
     { name: 'card' },
     { name: 'grid' },
-    { name: 'separator' },
     { name: 'show-more', children: [{ name: 'button' }] },
-
-    // ------------------------------------------------------------------------------------- //
-    // ⌘ The children of Drag And Drop
-    // ------------------------------------------------------------------------------------- //
-    { name: 'drop-zone' },
 
     // ------------------------------------------------------------------------------------- //
     // ⌘ The children of Media
     // ------------------------------------------------------------------------------------- //
+    { name: 'separator', text: '  ╋━ MEDIA' },
+
     { name: 'avatar', children: [{ name: 'visually-hidden' }] },
     { name: 'carousel', children: [{ name: 'button' }] },
 
     // ------------------------------------------------------------------------------------- //
     // ⌘ The children of Overlays
     // ------------------------------------------------------------------------------------- //
+    { name: 'separator', text: '  ╋━ OVERLAYS' },
+
     {
         name: 'modal',
-        children: [{ name: 'dialog' }],
+        children: [{ name: 'dialog' }, { name: 'button' }, { name: 'heading' }],
     },
     {
         name: 'sheet',
-        children: [{ name: 'dialog' }],
+        children: [{ name: 'dialog' }, { name: 'button' }, { name: 'heading' }],
     },
     {
         name: 'drawer',
-        children: [{ name: 'dialog' }],
+        children: [{ name: 'dialog' }, { name: 'button' }, { name: 'heading' }],
     },
-    { name: 'tooltip' },
     {
         name: 'popover',
-        children: [{ name: 'dialog' }],
+        children: [{ name: 'dialog' }, { name: 'button' }, { name: 'heading' }],
     },
+    { name: 'tooltip' },
 
     // ------------------------------------------------------------------------------------- //
     // ⌘ The children of Pickers
     // ------------------------------------------------------------------------------------- //
+    { name: 'separator', text: '  ╋━ PICKERS' },
+
     {
         name: 'combo-box',
         children: [
@@ -253,10 +136,16 @@ const components: any[] = [
             { name: 'button' },
         ],
     },
+    {
+        name: 'color-picker',
+        children: [{ name: 'color' }, { name: 'color-field' }, { name: 'select' }],
+    },
 
     // ------------------------------------------------------------------------------------- //
     // ⌘ The children of Statuses
     // ------------------------------------------------------------------------------------- //
+    { name: 'separator', text: '  ╋━ STATUSES' },
+
     { name: 'skeleton' },
     { name: 'badge' },
     { name: 'loader' },
@@ -267,21 +156,10 @@ const components: any[] = [
     { name: 'rating', children: [{ name: 'field' }] },
 
     // ------------------------------------------------------------------------------------- //
-    // ⌘ The children of Colors
-    // ------------------------------------------------------------------------------------- //
-
-    {
-        name: 'color-picker',
-        children: [{ name: 'color' }, { name: 'color-field' }, { name: 'select' }],
-    },
-    { name: 'color', children: [{ name: 'field' }, { name: 'slider' }] },
-    { name: 'color-field', children: [{ name: 'color-picker' }] },
-
-    // ------------------------------------------------------------------------------------- //
     // ⌘ The children of Layouts
     // ------------------------------------------------------------------------------------- //
+    { name: 'separator', text: '  ╋━ LAYOUTS' },
+
     { name: 'side-bar', children: [{ name: 'button' }, { name: 'sheet' }] },
     { name: 'top-bar', children: [{ name: 'button' }, { name: 'sheet' }, { name: 'menu' }] },
 ]
-
-export { components, namespaces }

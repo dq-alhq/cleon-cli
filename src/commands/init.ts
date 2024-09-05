@@ -3,7 +3,6 @@ import { input, select } from '@inquirer/prompts'
 import chalk from 'chalk'
 import { spawn } from 'child_process'
 import fs from 'fs'
-import fetch from 'node-fetch'
 import ora from 'ora'
 import path from 'path'
 import { fileURLToPath } from 'url'
@@ -45,7 +44,7 @@ export async function init() {
         ],
     })
     let componentsFolder, uiFolder, cssLocation, configSourcePath, themeProvider, providers, libFolder
-
+    const utilsSourceFile = path.join(stubs, 'utils.stub')
     if (projectType === 'Laravel') {
         componentsFolder = 'resources/js/components'
         uiFolder = path.join(componentsFolder, 'ui')
@@ -158,7 +157,7 @@ export async function init() {
         .join(' ')
 
     const action = packageManager === 'npm' ? 'i ' : 'add '
-    const installCommand = `${packageManager} ${action} ${packages}`
+    const installCommand = `${packageManager} ${action} ${packages} ${projectType === 'Next.js' ? 'next-themes' : ''}`
 
     spinner.info(`Installing dependencies...`)
     const child = spawn(installCommand, {
@@ -171,11 +170,8 @@ export async function init() {
         })
     })
 
-    const fileUrl = 'https://raw.githubusercontent.com/dq-alhq/cleon-cli/main/src/resources/utils.ts'
-    const response = await fetch(fileUrl)
-    const fileContent = await response.text()
-    const libFolderExists = fs.existsSync(libFolder)
-    if (!libFolderExists) {
+    const fileContent = fs.readFileSync(utilsSourceFile, 'utf8')
+    if (!fs.existsSync(libFolder)) {
         fs.mkdirSync(libFolder, { recursive: true })
         spinner.succeed(`Created lib folder at ${libFolder}`)
     }
@@ -204,6 +200,7 @@ export async function init() {
     const config = {
         $schema: 'https://cleon-ui.vercel.app',
         ui: uiFolder,
+        project: projectType,
     }
     fs.writeFileSync('cleon.json', JSON.stringify(config, null, 2))
     spinner.succeed('Configuration saved to cleon.json')
@@ -211,7 +208,7 @@ export async function init() {
     // Wait for the installation to complete before proceeding
     spinner.succeed('Installation complete.')
 
-    const continuedToAddComponent = spawn('npx cleon@latest add', {
+    const continuedToAddComponent = spawn('npx cleon add', {
         stdio: 'inherit',
         shell: true,
     })
