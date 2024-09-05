@@ -174,6 +174,11 @@ export async function init() {
     const fileUrl = 'https://raw.githubusercontent.com/dq-alhq/cleon-cli/main/src/resources/utils.ts'
     const response = await fetch(fileUrl)
     const fileContent = await response.text()
+    const libFolderExists = fs.existsSync(libFolder)
+    if (!libFolderExists) {
+        fs.mkdirSync(libFolder, { recursive: true })
+        spinner.succeed(`Created lib folder at ${libFolder}`)
+    }
     fs.writeFileSync(path.join(libFolder, 'utils.ts'), fileContent, { flag: 'w' })
     spinner.succeed(`utils file copied to ${libFolder}`)
 
