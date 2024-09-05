@@ -1,5 +1,4 @@
 import { getPackageManager } from '@/src/utils/get-package-manager'
-import { getRepoUrlForComponent } from '@/src/utils/repo'
 import { input, select } from '@inquirer/prompts'
 import chalk from 'chalk'
 import { spawn } from 'child_process'
@@ -15,6 +14,7 @@ const __dirname = path.dirname(__filename)
 // Adjust the path to reference the correct resource directory relative to the compiled output
 const resourceDir = path.resolve(__dirname, '../src/resources')
 const stubs = path.resolve(__dirname, '../src/resources/stubs')
+const utilsFile = path.resolve(__dirname, '../src/resources/utils.ts')
 
 export async function init() {
     const cssPath = {
@@ -171,7 +171,7 @@ export async function init() {
             resolve()
         })
     })
-    const fileUrl = getRepoUrlForComponent('primitive')
+    const fileUrl = utilsFile
     const response = await fetch(fileUrl)
     const fileContent = await response.text()
     fs.writeFileSync(path.join(libFolder, 'utils.ts'), fileContent, { flag: 'w' })
