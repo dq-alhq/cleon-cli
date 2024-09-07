@@ -160,6 +160,6 @@ export const components: any[] = [
     // ------------------------------------------------------------------------------------- //
     { name: 'separator', text: '  ╋━ LAYOUTS' },
 
-    { name: 'side-bar', children: [{ name: 'button' }, { name: 'sheet' }] },
-    { name: 'top-bar', children: [{ name: 'button' }, { name: 'sheet' }, { name: 'menu' }] },
+    { name: 'sidebar', children: [{ name: 'accordion' }, { name: 'sheet' }] },
+    { name: 'topbar', children: [{ name: 'sheet' }] },
 ]
