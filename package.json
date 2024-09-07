@@ -1,7 +1,7 @@
 {
     "name": "cleon",
     "type": "module",
-    "version": "0.0.6",
+    "version": "0.0.7",
     "description": "The command line interface for Cleon-UI.",
     "main": "dist/index.js",
     "bin": {
