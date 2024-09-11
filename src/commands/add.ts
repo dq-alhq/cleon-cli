@@ -76,7 +76,7 @@ export async function add(options: any) {
     let selectedComponents = component ? component.split(' ') : []
     if (selectedComponents.length === 0) {
         const choices = components.map((c) => {
-            if (c.name === 'separator') {
+            if (c.name === 'divider') {
                 return new Separator(c.text || '')
             } else {
                 return {

@@ -11,7 +11,7 @@ export const additionalDeps = async (componentName: string, packageManager: stri
         meter: 'framer-motion',
         'input-otp': 'input-otp',
         carousel: 'embla-carousel-react',
-        'command-menu': 'cmdk',
+        command: 'cmdk',
         'multi-select': 'react-aria',
     }
 

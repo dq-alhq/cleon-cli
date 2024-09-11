@@ -2,7 +2,7 @@ export const components: any[] = [
     // ------------------------------------------------------------------------------------- //
     // ⌘ The children of Buttons
     // ------------------------------------------------------------------------------------- //
-    { name: 'separator', text: '  ┳━ BUTTONS' },
+    { name: 'divider', text: '  ┳━ BUTTONS' },
 
     { name: 'button' },
     { name: 'file-trigger', children: [{ name: 'button' }] },
@@ -11,7 +11,7 @@ export const components: any[] = [
     // ------------------------------------------------------------------------------------- //
     // ⌘ The children of Collections
     // ------------------------------------------------------------------------------------- //
-    { name: 'separator', text: '  ╋━ COLLECTIONS' },
+    { name: 'divider', text: '  ╋━ COLLECTIONS' },
 
     { name: 'accordion' },
     { name: 'menu', children: [{ name: 'dropdown' }, { name: 'keyboard' }, { name: 'popover' }] },
@@ -25,7 +25,7 @@ export const components: any[] = [
     // ------------------------------------------------------------------------------------- //
     // ⌘ The children of Date and Time
     // ------------------------------------------------------------------------------------- //
-    { name: 'separator', text: '  ╋━ DATE & TIME' },
+    { name: 'divider', text: '  ╋━ DATE & TIME' },
 
     { name: 'calendar', children: [{ name: 'button' }] },
     { name: 'date-field' },
@@ -39,7 +39,7 @@ export const components: any[] = [
     // ------------------------------------------------------------------------------------- //
     // ⌘ The children of Forms
     // ------------------------------------------------------------------------------------- //
-    { name: 'separator', text: '  ╋━ FORMS' },
+    { name: 'divider', text: '  ╋━ FORMS' },
 
     { name: 'form' },
     { name: 'text-field', children: [{ name: 'field' }] },
@@ -54,7 +54,7 @@ export const components: any[] = [
     // ------------------------------------------------------------------------------------- //
     // ⌘ The children of Navigation
     // ------------------------------------------------------------------------------------- //
-    { name: 'separator', text: '  ╋━ NAVIGATION' },
+    { name: 'divider', text: '  ╋━ NAVIGATION' },
 
     { name: 'link' },
     {
@@ -69,16 +69,17 @@ export const components: any[] = [
     // ------------------------------------------------------------------------------------- //
     // ⌘ The children of Surfaces
     // ------------------------------------------------------------------------------------- //
-    { name: 'separator', text: '  ╋━ SURFACES' },
+    { name: 'divider', text: '  ╋━ SURFACES' },
 
     { name: 'card' },
     { name: 'grid' },
+    { name: 'separator' },
     { name: 'show-more', children: [{ name: 'button' }] },
 
     // ------------------------------------------------------------------------------------- //
     // ⌘ The children of Media
     // ------------------------------------------------------------------------------------- //
-    { name: 'separator', text: '  ╋━ MEDIA' },
+    { name: 'divider', text: '  ╋━ MEDIA' },
 
     { name: 'avatar', children: [{ name: 'visually-hidden' }] },
     { name: 'carousel', children: [{ name: 'button' }] },
@@ -86,7 +87,7 @@ export const components: any[] = [
     // ------------------------------------------------------------------------------------- //
     // ⌘ The children of Overlays
     // ------------------------------------------------------------------------------------- //
-    { name: 'separator', text: '  ╋━ OVERLAYS' },
+    { name: 'divider', text: '  ╋━ OVERLAYS' },
 
     {
         name: 'modal',
@@ -105,11 +106,12 @@ export const components: any[] = [
         children: [{ name: 'dialog' }, { name: 'button' }, { name: 'heading' }],
     },
     { name: 'tooltip' },
+    { name: 'command', children: [{ name: 'separator' }, { name: 'keyboard' }] },
 
     // ------------------------------------------------------------------------------------- //
     // ⌘ The children of Pickers
     // ------------------------------------------------------------------------------------- //
-    { name: 'separator', text: '  ╋━ PICKERS' },
+    { name: 'divider', text: '  ╋━ PICKERS' },
 
     {
         name: 'combo-box',
@@ -144,7 +146,7 @@ export const components: any[] = [
     // ------------------------------------------------------------------------------------- //
     // ⌘ The children of Statuses
     // ------------------------------------------------------------------------------------- //
-    { name: 'separator', text: '  ╋━ STATUSES' },
+    { name: 'divider', text: '  ╋━ STATUSES' },
 
     { name: 'skeleton' },
     { name: 'badge' },
@@ -154,11 +156,12 @@ export const components: any[] = [
     { name: 'note' },
     { name: 'toaster', children: [{ name: 'button' }, { name: 'loader' }] },
     { name: 'rating', children: [{ name: 'field' }] },
+    { name: 'charts' },
 
     // ------------------------------------------------------------------------------------- //
     // ⌘ The children of Layouts
     // ------------------------------------------------------------------------------------- //
-    { name: 'separator', text: '  ╋━ LAYOUTS' },
+    { name: 'divider', text: '  ╋━ LAYOUTS' },
 
     { name: 'sidebar', children: [{ name: 'accordion' }, { name: 'sheet' }] },
     { name: 'topbar', children: [{ name: 'sheet' }] },
