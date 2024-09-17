@@ -4,8 +4,8 @@
 
 @layer base {
     :root {
-        --font-sans: 'GT Walsheim Pro', sans-serif;
-        --font-mono: 'Jetbrains Mono', monospace;
+        --font-sans: 'Geist Sans', sans-serif;
+        --font-mono: 'Geist Mono', monospace;
 
         --background: 0 0% 98%;
         --foreground: 240 10% 4%;
@@ -43,6 +43,7 @@
         --accent: 240 100% 42%;
         --accent-foreground: 0 0% 98%;
 
+        --ring: 215.89 100% 43.92%;
         --border: 240 5% 84%;
         --radius: 0.5rem;
     }
