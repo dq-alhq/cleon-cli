@@ -1,5 +1,7 @@
 
 
+## [0.0.12](https://github.com/dq-alhq/cleon-cli/compare/v0.0.11...v0.0.12) (2024-09-18)
+
 ## [0.0.11](https://github.com/dq-alhq/cleon-cli/compare/v0.0.10...v0.0.11) (2024-09-18)
 
 ## [0.0.10](https://github.com/dq-alhq/cleon-cli/compare/v0.0.9...v0.0.10) (2024-09-18)
