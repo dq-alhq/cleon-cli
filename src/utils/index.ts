@@ -1,6 +1,7 @@
 import chalk from 'chalk'
 import fs from 'fs'
 import path from 'path'
+import { convertTsxToJsx } from './transform-js'
 
 export function getWriteComponentPath(componentName: string) {
     const uiFolder = getUIFolderPath()
@@ -27,12 +28,26 @@ export function getProjectType() {
     }
 }
 
+export function isTsx() {
+    const configFile = 'cleon.json'
+    if (fs.existsSync(configFile)) {
+        const config = JSON.parse(fs.readFileSync(configFile, 'utf8'))
+        return config.tsx
+    } else {
+        throw new Error('Configuration file cleon.json not found. Please run the init command first.')
+    }
+}
+
 export async function writeFile(description: string, url: string, writePath: string) {
     try {
         const response = await fetch(url)
         const content = await response.text()
         const component = getProjectType() === 'Next.js' ? content : content.replace("'use client'\n\n", '')
-        fs.writeFileSync(writePath, component)
+        if (isTsx()) {
+            fs.writeFileSync(writePath, component)
+        } else {
+            fs.writeFileSync(writePath, component, 'utf8')
+        }
     } catch (error: any) {
         console.error(chalk.red(`Error writing component to ${writePath}: ${error.message}`))
     }
@@ -48,4 +63,27 @@ export function WriteExports() {
     const indexFilePath = path.join(UIFolder, 'index.ts')
     fs.writeFileSync(indexFilePath, exports)
     console.log(chalk.green(`✔ ${allComponentsInUIFolder.length - 1} components added to index.ts`))
+}
+
+export async function transformTsxToJsx() {
+    const UIFolder = getUIFolderPath()
+    await convertTsxToJsx(UIFolder, UIFolder)
+        .then(() => {
+            console.log(chalk.green('✔ Tsx files converted to Jsx'))
+        })
+        .finally(() => {
+            fs.readdir(UIFolder, (err, files) => {
+                if (err) throw err
+                for (const file of files) {
+                    if (file.endsWith('.tsx') || file.endsWith('.ts')) {
+                        fs.unlink(path.join(UIFolder, file), (err) => {
+                            if (err) throw err
+                        })
+                    }
+                }
+            })
+        })
+        .catch((error) => {
+            console.error(chalk.red(error.message))
+        })
 }

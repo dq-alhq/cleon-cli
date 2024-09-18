@@ -43,8 +43,17 @@ export async function init() {
             { name: 'Other', value: 'Other' },
         ],
     })
+
+    const useTypescript = await select({
+        message: 'Use Typescript? (Recommended)',
+        choices: [
+            { name: 'Yes', value: true },
+            { name: 'No', value: false },
+        ],
+    })
+
     let componentsFolder, uiFolder, cssLocation, configSourcePath, themeProvider, providers, libFolder
-    const utilsSourceFile = path.join(stubs, 'utils.stub')
+    const utilsSourceFile = useTypescript ? path.join(stubs, 'utils.stub') : path.join(stubs, 'utils-js.stub')
     if (projectType === 'Laravel') {
         componentsFolder = 'resources/js/components'
         uiFolder = path.join(componentsFolder, 'ui')
@@ -170,12 +179,16 @@ export async function init() {
         })
     })
 
-    const fileContent = fs.readFileSync(utilsSourceFile, 'utf8')
+    const utilsContent = fs.readFileSync(utilsSourceFile, 'utf8')
     if (!fs.existsSync(libFolder)) {
         fs.mkdirSync(libFolder, { recursive: true })
         spinner.succeed(`Created lib folder at ${libFolder}`)
     }
-    fs.writeFileSync(path.join(libFolder, 'utils.ts'), fileContent, { flag: 'w' })
+    if (useTypescript) {
+        fs.writeFileSync(path.join(libFolder, 'utils.ts'), utilsContent, { flag: 'w' })
+    } else {
+        fs.writeFileSync(path.join(libFolder, 'utils.js'), utilsContent, { flag: 'w' })
+    }
     spinner.succeed(`utils file copied to ${libFolder}`)
 
     // Copy theme provider and providers files
@@ -201,6 +214,7 @@ export async function init() {
         $schema: 'https://cleon-ui.vercel.app',
         ui: uiFolder,
         project: projectType,
+        tsx: useTypescript,
     }
     fs.writeFileSync('cleon.json', JSON.stringify(config, null, 2))
     spinner.succeed('Configuration saved to cleon.json')
