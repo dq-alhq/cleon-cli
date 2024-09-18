@@ -1,5 +1,12 @@
 
 
+## [0.0.13](https://github.com/dq-alhq/cleon-cli/compare/v0.0.12...v0.0.13) (2024-09-18)
+
+
+### Chores
+
+* fix, Fix bugs on providers not found ([0936f1a](https://github.com/dq-alhq/cleon-cli/commit/0936f1a57d5992fb56fdb7ad0df4876292c54609))
+
 ## [0.0.12](https://github.com/dq-alhq/cleon-cli/compare/v0.0.11...v0.0.12) (2024-09-18)
 
 ## [0.0.11](https://github.com/dq-alhq/cleon-cli/compare/v0.0.10...v0.0.11) (2024-09-18)
