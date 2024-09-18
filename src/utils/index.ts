@@ -58,7 +58,7 @@ export function WriteExports() {
     const allComponentsInUIFolder = fs.readdirSync(UIFolder)
     const exports = allComponentsInUIFolder
         .filter((componentName) => !componentName.endsWith('.ts'))
-        .map((componentName) => `export * from './${componentName.replace('.tsx', '')}';`)
+        .map((componentName) => `export * from './${componentName.replace('.tsx', '').replace('.jsx', '')}';`)
         .join('\n')
     const indexFilePath = path.join(UIFolder, 'index.ts')
     fs.writeFileSync(indexFilePath, exports)
@@ -67,7 +67,7 @@ export function WriteExports() {
 
 export async function transformTsxToJsx() {
     const UIFolder = getUIFolderPath()
-    const ComponentsFolder = path.join(UIFolder).replace('ui', '')
+    const ComponentsFolder = UIFolder.replace('ui', '')
     if (!fs.existsSync(UIFolder)) {
         throw new Error('Folder does not exist')
     }
@@ -75,13 +75,10 @@ export async function transformTsxToJsx() {
     await convertTsxToJsx(ComponentsFolder, ComponentsFolder)
     await convertTsxToJsx(UIFolder, UIFolder)
         .then(() => {
-            console.log(chalk.green('✔ Tsx files converted to Jsx'))
-        })
-        .finally(() => {
             fs.readdir(ComponentsFolder, (err, files) => {
                 if (err) throw err
                 for (const file of files) {
-                    if (file.endsWith('.tsx') || file.endsWith('.ts')) {
+                    if (file.endsWith('.tsx')) {
                         fs.unlink(path.join(ComponentsFolder, file), (err) => {
                             if (err) throw err
                         })
