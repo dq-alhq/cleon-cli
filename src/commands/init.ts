@@ -15,6 +15,15 @@ const resourceDir = path.resolve(__dirname, '../src/resources')
 const stubs = path.resolve(__dirname, '../src/resources/stubs')
 
 export async function init() {
+    const useTypescript = await select({
+        message: 'Use Typescript? (Recommended)',
+        choices: [
+            { name: 'Yes', value: true },
+            { name: 'No', value: false },
+        ],
+        default: true,
+    })
+
     const cssPath = {
         laravel: 'resources/css/app.css',
         vite: 'src/index.css',
@@ -41,14 +50,6 @@ export async function init() {
             { name: 'Laravel', value: 'Laravel' },
             { name: 'Vite', value: 'Vite' },
             { name: 'Other', value: 'Other' },
-        ],
-    })
-
-    const useTypescript = await select({
-        message: 'Use Typescript? (Recommended)',
-        choices: [
-            { name: 'Yes', value: true },
-            { name: 'No', value: false },
         ],
     })
 
