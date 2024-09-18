@@ -6,6 +6,7 @@ import fs from 'fs'
 import ora from 'ora'
 import path from 'path'
 import { fileURLToPath } from 'url'
+import { transformTsxToJsx } from '../utils/transform-jsx'
 // Define __filename and __dirname for ES modules
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -195,11 +196,27 @@ export async function init() {
     // Copy theme provider and providers files
     if (themeProvider) {
         const themeProviderContent = fs.readFileSync(themeProvider, 'utf8')
-        fs.writeFileSync(path.join(componentsFolder, 'theme-provider.tsx'), themeProviderContent, { flag: 'w' })
+        if (useTypescript) {
+            fs.writeFileSync(path.join(componentsFolder, 'theme-provider.tsx'), themeProviderContent, { flag: 'w' })
+        } else {
+            const themeProviderContentJsx = await transformTsxToJsx({
+                content: themeProviderContent,
+                writePath: path.join(componentsFolder, 'theme-provider.jsx'),
+            })
+            fs.writeFileSync(path.join(componentsFolder, 'theme-provider.jsx'), themeProviderContentJsx, { flag: 'w' })
+        }
 
         if (providers) {
             const providersContent = fs.readFileSync(providers, 'utf8')
-            fs.writeFileSync(path.join(componentsFolder, 'providers.tsx'), providersContent, { flag: 'w' })
+            if (useTypescript) {
+                fs.writeFileSync(path.join(componentsFolder, 'providers.tsx'), providersContent, { flag: 'w' })
+            } else {
+                const providersContentJsx = await transformTsxToJsx({
+                    content: providersContent,
+                    writePath: path.join(componentsFolder, 'providers.jsx'),
+                })
+                fs.writeFileSync(path.join(componentsFolder, 'providers.jsx'), providersContentJsx, { flag: 'w' })
+            }
         }
 
         spinner.succeed(`Theme provider and providers files copied to ${componentsFolder}`)

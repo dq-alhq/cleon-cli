@@ -5,7 +5,7 @@ import fs from 'fs'
 import ora from 'ora'
 import path from 'path'
 import { components } from '../resources/components'
-import { getWriteComponentPath, isTsx, transformTsxToJsx, WriteExports, writeFile } from '../utils'
+import { getWriteComponentPath, WriteExports, writeFile } from '../utils'
 import { additionalDeps } from '../utils/additional-deps'
 import { getPackageManager } from '../utils/get-package-manager'
 
@@ -117,14 +117,7 @@ export async function add(options: any) {
         await processComponent(componentName, packageManager, action, processed, components, true)
     }
 
-    // Generate index.ts file
+    // Generate index file
     WriteExports()
-
-    if (isTsx() === false) {
-        await transformTsxToJsx().finally(() => {
-            console.log(chalk.green(`✔ All the components in ${options.component} have been added.`))
-        })
-    } else {
-        console.log(chalk.green(`✔ All the components in ${options.component} have been added.`))
-    }
+    console.log(chalk.green(`✔ All the components in ${options.component} have been added.`))
 }
