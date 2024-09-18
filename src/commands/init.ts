@@ -53,8 +53,8 @@ export async function init() {
         ],
     })
 
-    let componentsFolder, uiFolder, cssLocation, configSourcePath, themeProvider, providers, libFolder
     const utilsSourceFile = useTypescript ? path.join(stubs, 'utils.stub') : path.join(stubs, 'utils-js.stub')
+    let componentsFolder, uiFolder, cssLocation, configSourcePath, themeProvider, providers, libFolder
     if (projectType === 'Laravel') {
         componentsFolder = 'resources/js/components'
         uiFolder = path.join(componentsFolder, 'ui')
