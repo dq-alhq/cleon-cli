@@ -67,7 +67,7 @@ export function WriteExports() {
 
 export async function transformTsxToJsx() {
     const UIFolder = getUIFolderPath()
-    const ComponentsFolder = path.join('..', UIFolder)
+    const ComponentsFolder = path.join(UIFolder).replace('ui', '')
     if (!fs.existsSync(UIFolder)) {
         throw new Error('Folder does not exist')
     }
