@@ -120,9 +120,11 @@ export async function add(options: any) {
     // Generate index.ts file
     WriteExports()
 
-    if (!isTsx()) {
-        await transformTsxToJsx()
+    if (isTsx() === false) {
+        await transformTsxToJsx().finally(() => {
+            console.log(chalk.green(`✔ All the components in ${options.component} have been added.`))
+        })
+    } else {
+        console.log(chalk.green(`✔ All the components in ${options.component} have been added.`))
     }
-
-    console.log(chalk.green(`✔ All the components in ${options.component} have been added.`))
 }
