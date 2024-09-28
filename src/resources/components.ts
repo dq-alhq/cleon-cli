@@ -151,7 +151,7 @@ export const components: any[] = [
     { name: 'skeleton' },
     { name: 'badge' },
     { name: 'loader' },
-    { name: 'progress-bar', children: [{ name: 'field' }] },
+    { name: 'progress', children: [{ name: 'field' }] },
     { name: 'meter', children: [{ name: 'field' }] },
     { name: 'note' },
     { name: 'toaster', children: [{ name: 'button' }, { name: 'loader' }] },

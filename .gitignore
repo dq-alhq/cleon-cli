@@ -8,6 +8,8 @@ tailwind.config.ts
 app
 .github_token
 bun.lockb
+package-lock.json
+yarn.lock
 
 src/app
 src/index.css
