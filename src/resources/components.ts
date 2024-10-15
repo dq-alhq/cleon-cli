@@ -50,6 +50,18 @@ export const components: any[] = [
     { name: 'number-field', children: [{ name: 'field' }] },
     { name: 'search-field', children: [{ name: 'field' }, { name: 'button' }] },
     { name: 'drop-zone' },
+    {
+        name: 'rich-text-field',
+        children: [
+            { name: 'field' },
+            { name: 'button' },
+            { name: 'keyboard' },
+            { name: 'separator' },
+            { name: 'toggle' },
+            { name: 'tooltip' },
+            { name: 'popover' },
+        ],
+    },
 
     // ------------------------------------------------------------------------------------- //
     // ⌘ The children of Navigation
